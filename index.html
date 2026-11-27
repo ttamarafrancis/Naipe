@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Naipe</title>
+<meta name="theme-color" content="#120a14">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="login-screen" class="login-screen">
+  <div class="login-card">
+    <h1 class="logo-login">Naipe</h1>
+    <p>Entre com sua conta Google pra sincronizar tudo entre seus aparelhos.</p>
+    <button id="btn-login-google">Entrar com Google</button>
+  </div>
+</div>
+
+<div id="app" class="escondido">
+
+  <nav class="sidebar">
+    <div class="logo">Naipe</div>
+    <ul class="nav-list">
+      <li data-tab="hoje" class="active">Hoje</li>
+      <li data-tab="saude">Compromissos & Saude</li>
+      <li data-tab="ciclo">Ciclo & Humor</li>
+      <li data-tab="tarefas">Tarefas em aberto</li>
+      <li data-tab="algumdia">Algum dia</li>
+      <li data-tab="ideias">Ideias</li>
+      <li data-tab="estudos">Estudos</li>
+      <li data-tab="mural">Mural</li>
+    </ul>
+  </nav>
+
+  <main class="content">
+    <section id="tab-hoje" class="tab-pane active">
+      <h1>Hoje</h1>
+      <p class="data-hoje" id="data-hoje"></p>
+      <div class="banner-agua" id="banner-agua"></div>
+      <div class="bloco">
+        <h2>Compromissos de hoje</h2>
+        <ul id="lista-compromissos" class="lista-vazia">
+          <li class="vazio">Nada marcado por aqui ainda.</li>
+        </ul>
+      </div>
+      <div class="bloco">
+        <h2>Tarefas urgentes</h2>
+        <ul id="lista-tarefas-urgentes" class="lista-vazia">
+          <li class="vazio">Nenhuma tarefa urgente. Respira.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="tab-saude" class="tab-pane">
+      <h1>Compromissos & Saude</h1>
+      <p class="em-breve">Essa aba chega na proxima fase.</p>
+    </section>
+
+    <section id="tab-ciclo" class="tab-pane">
+      <h1>Ciclo & Humor</h1>
+      <p class="em-breve">Essa aba chega na proxima fase.</p>
+    </section>
+
+    <section id="tab-tarefas" class="tab-pane">
+      <h1>Tarefas em aberto</h1>
+      <p class="em-breve">Essa aba chega na proxima fase.</p>
+    </section>
+
+    <section id="tab-algumdia" class="tab-pane">
+      <h1>Algum dia</h1>
+      <p class="em-breve">Essa aba chega na proxima fase.</p>
+    </section>
+
+    <section id="tab-ideias" class="tab-pane">
+      <h1>Ideias</h1>
+      <p class="em-breve">Essa aba chega na proxima fase.</p>
+    </section>
+
+    <section id="tab-estudos" class="tab-pane">
+      <h1>Estudos</h1>
+      <p class="em-breve">Essa aba chega na proxima fase.</p>
+    </section>
+
+    <section id="tab-mural" class="tab-pane">
+      <h1>Mural</h1>
+      <p class="em-breve">Essa aba chega na proxima fase.</p>
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <div data-tab="hoje" class="active">Hoje</div>
+    <div data-tab="saude">Saude</div>
+    <div data-tab="ciclo">Ciclo</div>
+    <div data-tab="tarefas">Tarefas</div>
+    <div data-tab="algumdia">AlgumDia</div>
+    <div data-tab="ideias">Ideias</div>
+    <div data-tab="estudos">Estudos</div>
+    <div data-tab="mural">Mural</div>
+  </nav>
+
+</div>
+
+<script type="module" src="js/firebase-config.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+:root {
+  --preto: #0f0a12;
+  --preto-claro: #1a1220;
+  --vinho: #6e1f3d;
+  --vinho-claro: #8a2c4f;
+  --dourado: #c9a44c;
+  --dourado-claro: #e3c988;
+  --texto: #f2e9da;
+  --texto-suave: #c9bdb0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--preto);
+  color: var(--texto);
+  font-family: 'Nunito', sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, .logo {
+  font-family: 'Cinzel', serif;
+}
+
+#app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background: linear-gradient(180deg, var(--preto-claro), var(--preto));
+  border-right: 1px solid rgba(201,164,76,0.2);
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.logo {
+  font-size: 28px;
+  color: var(--dourado-claro);
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-list li {
+  padding: 12px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--texto-suave);
+  transition: all 0.2s ease;
+  font-size: 15px;
+}
+
+.nav-list li:hover {
+  background: rgba(201,164,76,0.08);
+  color: var(--texto);
+}
+
+.nav-list li.active {
+  background: linear-gradient(90deg, var(--vinho), transparent);
+  color: var(--dourado-claro);
+  font-weight: 700;
+}
+
+.content {
+  flex: 1;
+  padding: 32px 40px;
+  padding-bottom: 100px;
+}
+
+.tab-pane { display: none; animation: fadeIn 0.3s ease; }
+.tab-pane.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+  color: var(--dourado-claro);
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.data-hoje {
+  color: var(--texto-suave);
+  margin-bottom: 24px;
+  text-transform: capitalize;
+}
+
+.em-breve {
+  color: var(--texto-suave);
+  font-style: italic;
+  margin-top: 20px;
+}
+
+.banner-agua {
+  background: linear-gradient(90deg, var(--vinho-claro), var(--vinho));
+  border-radius: 14px;
+  padding: 14px 20px;
+  margin-bottom: 28px;
+  font-weight: 600;
+  display: none;
+}
+
+.banner-agua.visivel { display: block; }
+
+.bloco {
+  background: var(--preto-claro);
+  border: 1px solid rgba(201,164,76,0.15);
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+
+.bloco h2 {
+  color: var(--dourado);
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+.bloco ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+.bloco li {
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 10px;
+  border-left: 3px solid var(--dourado);
+}
+
+.bloco li.vazio {
+  border-left: 3px solid transparent;
+  color: var(--texto-suave);
+  font-style: italic;
+  background: transparent;
+}
+
+.bottom-nav { display: none; }
+
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .content { padding: 24px 18px; padding-bottom: 90px; }
+  .bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    overflow-x: auto;
+    gap: 4px;
+    align-items: center;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--preto-claro);
+    border-top: 1px solid rgba(201,164,76,0.2);
+    padding: 10px 4px env(safe-area-inset-bottom);
+    z-index: 100;
+  }
+  .bottom-nav div {
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-size: 11px;
+    padding: 8px 6px;
+    border-radius: 10px;
+    opacity: 0.5;
+  }
+  .bottom-nav div.active {
+    opacity: 1;
+    background: rgba(201,164,76,0.15);
+  }
+}
+
+.escondido { display: none !important; }
+
+.login-screen {
+  position: fixed; inset: 0;
+  background: var(--preto);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+}
+
+.login-card {
+  text-align: center;
+  padding: 40px;
+  border: 1px solid rgba(201,164,76,0.2);
+  border-radius: 20px;
+  background: var(--preto-claro);
+  max-width: 320px;
+}
+
+.logo-login {
+  font-family: 'Cinzel', serif;
+  color: var(--dourado-claro);
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.login-card p { color: var(--texto-suave); margin-bottom: 24px; }
+
+#btn-login-google {
+  background: linear-gradient(90deg, var(--vinho), var(--vinho-claro));
+  color: var(--texto);
+  border: none;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 15px;
+}
