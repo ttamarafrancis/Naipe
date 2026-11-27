@@ -17,30 +17,66 @@ observarLogin((user) => {
   }
 });
 
+const abasNaSheet = ["ciclo", "algumdia", "estudos", "mural"];
+const sheet = document.getElementById("sheet-mais");
+const btnMais = document.getElementById("btn-mais");
+const sheetFundo = document.getElementById("sheet-fundo");
+
+function abrirSheet() {
+  sheet.classList.remove("escondido");
+  btnMais.setAttribute("aria-expanded", "true");
+  sheet.querySelector(".sheet-item").focus();
+}
+
+function fecharSheet() {
+  sheet.classList.add("escondido");
+  btnMais.setAttribute("aria-expanded", "false");
+  btnMais.focus();
+}
+
+sheet.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") fecharSheet();
+});
+
+btnMais.addEventListener("click", abrirSheet);
+sheetFundo.addEventListener("click", fecharSheet);
+
+document.querySelectorAll(".sheet-item").forEach(item => {
+  item.addEventListener("click", () => {
+    trocarAba(item.dataset.tab);
+    fecharSheet();
+  });
+});
+
 function trocarAba(nomeAba) {
   document.querySelectorAll(".tab-pane").forEach(el => el.classList.remove("active"));
   document.getElementById("tab-" + nomeAba).classList.add("active");
-  document.querySelectorAll(".nav-list li, .bottom-nav div").forEach(el => {
+
+  document.querySelectorAll(".nav-list li").forEach(el => {
     el.classList.toggle("active", el.dataset.tab === nomeAba);
   });
+
+  document.querySelectorAll(".nav-item[data-tab]").forEach(el => {
+    el.classList.toggle("active", el.dataset.tab === nomeAba);
+  });
+
+  if (abasNaSheet.includes(nomeAba)) {
+    btnMais.classList.add("active");
+  } else {
+    btnMais.classList.remove("active");
+  }
 }
-document.querySelectorAll("[data-tab]").forEach(el => {
+
+document.querySelectorAll(".nav-list li[data-tab], .nav-item[data-tab]").forEach(el => {
   el.addEventListener("click", () => trocarAba(el.dataset.tab));
 });
 
 const hoje = new Date();
-document.getElementById("data-hoje").textContent = hoje.toLocaleDateString("pt-BR", {
+const dataTexto = hoje.toLocaleDateString("pt-BR", {
   weekday: "long", day: "numeric", month: "long"
 });
-
-(function atualizarBannerAgua() {
-  const horaAtual = hoje.getHours();
-  const banner = document.getElementById("banner-agua");
-  if (horaAtual >= 8 && horaAtual <= 22) {
-    banner.textContent = "Ja bebeu agua nas ultimas horas? Esse e seu lembrete carinhoso.";
-    banner.classList.add("visivel");
-  }
-})();
+document.getElementById("data-hoje").textContent =
+  dataTexto.charAt(0).toUpperCase() + dataTexto.slice(1);
 
 async function carregarCompromissosHoje(uid) {
   const inicioDia = new Date(); inicioDia.setHours(0,0,0,0);
@@ -55,7 +91,7 @@ async function carregarCompromissosHoje(uid) {
     snap.forEach(doc => {
       const d = doc.data();
       const li = document.createElement("li");
-      li.textContent = (d.horario || "") + " - " + d.titulo;
+      li.textContent = (d.horario || "") + " — " + d.titulo;
       lista.appendChild(li);
     });
   } catch (e) { console.error("Erro ao carregar compromissos:", e); }
